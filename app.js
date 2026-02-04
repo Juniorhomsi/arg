@@ -2,6 +2,47 @@
 
 var ARG_FRAGMENTS = { 1: 'ESSAYER', 2: 'COMPRENDRE', 3: 'VÉRIFIER' };
 
+/* ——— Journal des accès (users.txt) ——— */
+function getDeviceInfo() {
+  var nav = typeof navigator !== 'undefined' ? navigator : {};
+  var screen = typeof screen !== 'undefined' ? screen : {};
+  return {
+    url: typeof location !== 'undefined' ? location.href : '',
+    referrer: typeof document !== 'undefined' ? (document.referrer || '') : '',
+    timestamp: new Date().toISOString(),
+    userAgent: nav.userAgent || '',
+    platform: nav.platform || '',
+    language: nav.language || '',
+    languages: nav.languages ? [].slice.call(nav.languages) : [],
+    cookieEnabled: nav.cookieEnabled,
+    doNotTrack: nav.doNotTrack,
+    hardwareConcurrency: nav.hardwareConcurrency,
+    deviceMemory: nav.deviceMemory,
+    screenWidth: screen.width,
+    screenHeight: screen.height,
+    screenColorDepth: screen.colorDepth,
+    timezone: typeof Intl !== 'undefined' && Intl.DateTimeFormat ? Intl.DateTimeFormat().resolvedOptions().timeZone : '',
+    viewport: typeof window !== 'undefined' && window.innerWidth ? window.innerWidth + 'x' + window.innerHeight : ''
+  };
+}
+
+function sendDeviceLog() {
+  var base = (location.protocol === 'http:' || location.protocol === 'https:')
+    ? ''
+    : 'http://localhost:3000';
+  var url = base + '/api/log';
+  var data = getDeviceInfo();
+  if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+    navigator.sendBeacon(url, JSON.stringify(data));
+  } else {
+    fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    }).catch(function () {});
+  }
+}
+
 var WHATSAPP_MESSAGE =
   'La meilleure façon d\'utiliser l\'IA est d\'ESSAYER une ou plusieurs questions, de COMPRENDRE et de VÉRIFIER la réponse qu\'il te donne.\n' +
   'IA = outil de vérification et d\'amélioration. Pas un remplacement du cerveau.\n\n' +

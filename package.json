@@ -1,0 +1,9 @@
+{
+  "name": "arg-protocole-effort",
+  "version": "1.0.0",
+  "description": "ARG Protocole Effort - MBA ESG",
+  "private": true,
+  "scripts": {
+    "start": "node server.js"
+  }
+}
