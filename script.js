@@ -73,18 +73,27 @@ function updateUI() {
         const li = document.createElement('li');
         li.className = `task-item ${task.completed ? 'completed' : ''}`;
         
-        li.innerHTML = `
-            <input 
-                type="checkbox" 
-                class="task-checkbox" 
-                ${task.completed ? 'checked' : ''}
-                onchange="toggleTask(${task.id})"
-            >
-            <span class="task-text">${task.text}</span>
-            <button class="btn-delete" onclick="deleteTask(${task.id})">
-                Supprimer
-            </button>
-        `;
+        // Create checkbox
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.className = 'task-checkbox';
+        checkbox.checked = task.completed;
+        checkbox.addEventListener('change', () => toggleTask(task.id));
+        
+        // Create task text span (using textContent for security)
+        const taskTextSpan = document.createElement('span');
+        taskTextSpan.className = 'task-text';
+        taskTextSpan.textContent = task.text;
+        
+        // Create delete button
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = 'btn-delete';
+        deleteBtn.textContent = 'Supprimer';
+        deleteBtn.addEventListener('click', () => deleteTask(task.id));
+        
+        li.appendChild(checkbox);
+        li.appendChild(taskTextSpan);
+        li.appendChild(deleteBtn);
         
         taskList.appendChild(li);
     });
@@ -122,7 +131,3 @@ function loadTasks() {
         tasks = JSON.parse(savedTasks);
     }
 }
-
-// Rendre les fonctions globales pour les événements onclick
-window.toggleTask = toggleTask;
-window.deleteTask = deleteTask;

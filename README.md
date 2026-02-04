@@ -39,4 +39,4 @@ L'application comprend :
 - Une liste de tâches avec checkboxes et boutons de suppression
 - Un message d'accueil quand aucune tâche n'est présente
 
-Les données sont automatiquement sauvegardées dans le navigateur et persistent entre les sessions 
+Les données sont automatiquement sauvegardées dans le navigateur et persistent entre les sessions. 

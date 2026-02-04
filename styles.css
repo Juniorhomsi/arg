@@ -204,12 +204,12 @@ h1 {
     margin-bottom: 10px;
 }
 
-.empty-subtitle {
-    font-size: 1em !important;
+.empty-state .empty-subtitle {
+    font-size: 1em;
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 @media (max-width: 600px) {
