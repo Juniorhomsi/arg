@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Étape 1 – Filtre Anti-Copie</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<div class="container arg-container">
+  <div class="step-progress" aria-hidden="true"><span class="step-dot active"></span><span class="step-dot"></span><span class="step-dot"></span></div>
+  <img src="../../assets/images/logo.png" class="logo" alt="MBA ESG">
+
+  <h1>ÉTAPE 1 — Le Filtre Anti-Copie</h1>
+  <p class="step-subtitle">(Évaluer l'effort initial)</p>
+  <p class="subtitle">
+    Premier danger : l'accès direct aux solutions tue l'effort mental.<br>
+    Nous devons vérifier que tu sais réfléchir avant d'observer.
+  </p>
+
+  <p class="mini-defi">👉 Mini défi (facile, 1 minute)</p>
+  <div class="question-container">
+    <div class="question">
+      <strong>1. Que fait une clé primaire dans une table SQL ?</strong>
+      <label><input type="radio" name="q1" value="a"> Trier les données</label>
+      <label><input type="radio" name="q1" value="ok"> Identifier chaque ligne</label>
+      <label><input type="radio" name="q1" value="a"> Dupliquer les lignes</label>
+    </div>
+
+    <div class="question">
+      <strong>2. Quelle est la différence entre WHERE et HAVING ?</strong>
+      <label><input type="radio" name="q2" value="a"> WHERE s'applique après GROUP BY</label>
+      <label><input type="radio" name="q2" value="ok"> HAVING s'applique après GROUP BY</label>
+      <label><input type="radio" name="q2" value="a"> Ils sont identiques</label>
+    </div>
+  </div>
+
+  <button type="button" id="btn-step" onclick="step1()">Valider</button>
+  <div id="res1" class="result result-fragment" role="status" aria-live="polite"></div>
+  <div id="next1" class="next-step"></div>
+</div>
+
+<script src="../../app.js"></script>
+</body>
+</html>

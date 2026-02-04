@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Étape 3 – Débloquer les Projets</title>
+    <link rel="stylesheet" href="../../style.css">
+</head>
+<body>
+<div class="container arg-container">
+  <div class="step-progress" aria-hidden="true"><span class="step-dot done"></span><span class="step-dot done"></span><span class="step-dot active"></span></div>
+  <img src="../../assets/images/logo.png" class="logo" alt="MBA ESG">
+
+  <h1>ÉTAPE 3 — Accès aux templates</h1>
+  <p class="step-subtitle">(mais avec une règle)</p>
+  <p class="subtitle">
+    Tu peux maintenant voir les templates.<br>
+    Mais une dernière règle : tu dois prouver que tu sais utiliser l'IA correctement.
+  </p>
+
+  <div class="unlock-block">
+    <span class="unlock-icon">🔐</span>
+    <strong>Débloquer les Projets</strong>
+  </div>
+
+  <p class="subtitle">Regarde cette requête SQL renvoyée par l'IA après un prompt.</p>
+  <div class="code-sql"><code>SELECT * FROM orders;</code></div>
+
+  <div class="question">
+    <strong>Est-elle correcte ? Devine ce qu'elle fait en une ou deux phrases.</strong>
+    <label><input type="radio" name="q3" value="ok"> Elle est valide mais dangereuse (retourne tout)</label>
+    <label><input type="radio" name="q3" value="a"> Elle est incorrecte</label>
+    <label><input type="radio" name="q3" value="a"> Elle fait une jointure</label>
+  </div>
+
+  <button type="button" id="btn-step" onclick="step3()">Débloquer</button>
+  <div id="res3" class="result result-fragment" role="status" aria-live="polite"></div>
+  <div id="next3" class="next-step"></div>
+</div>
+
+<script src="../../app.js"></script>
+</body>
+</html>

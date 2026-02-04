@@ -1,0 +1,628 @@
+/* ============================================
+   Charte : Primaire #ef7812 | Noir
+   Design moderne — MBA ESG / Conform Test
+   ============================================ */
+
+:root {
+  --primary: #ef7812;
+  --primary-dark: #d96a0a;
+  --primary-light: #ff8c2e;
+  --primary-soft: rgba(239, 120, 18, 0.12);
+  --black: #0a0a0a;
+  --black-soft: #1a1a1a;
+  --gray-900: #212121;
+  --gray-700: #424242;
+  --gray-500: #757575;
+  --gray-300: #e0e0e0;
+  --gray-100: #f5f5f5;
+  --white: #ffffff;
+  --success: #2e7d32;
+  --error: #c62828;
+  --radius: 12px;
+  --radius-sm: 8px;
+  --shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.12);
+  --transition: 0.2s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--black);
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fond avec dégradé et motif léger */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 80% 50% at 50% -20%, var(--primary-soft), transparent 50%),
+    linear-gradient(180deg, var(--black) 0%, var(--black-soft) 100%);
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(239, 120, 18, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(239, 120, 18, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -1;
+  pointer-events: none;
+}
+
+/* ========== Container principal ========== */
+.container {
+  background: var(--white);
+  width: 100%;
+  max-width: 440px;
+  padding: 40px 32px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  position: relative;
+  animation: cardIn 0.5s ease-out;
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Bandeau orange en haut du container */
+.container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--primary), var(--primary-light));
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+/* ========== ARG — Protocole Effort ========== */
+.badge-protocol {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  background: var(--primary-soft);
+  padding: 6px 10px;
+  border-radius: 6px;
+}
+
+.alert-protected {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  margin: 0 0 16px;
+  background: rgba(239, 120, 18, 0.1);
+  border: 1px solid rgba(239, 120, 18, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.alert-icon {
+  font-size: 1.1rem;
+}
+
+.confidential {
+  font-size: 0.9375rem;
+  color: var(--gray-700);
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.btn-primary {
+  display: block;
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--primary);
+  color: var(--white) !important;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.02em;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(239, 120, 18, 0.4);
+  color: var(--white) !important;
+}
+
+/* Barre de progression (étapes 1/2/3) */
+.step-progress {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.step-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  transition: background var(--transition);
+}
+
+.step-dot.active {
+  background: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-soft);
+}
+
+.step-dot.done {
+  background: var(--primary-dark);
+}
+
+.step-subtitle {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  text-align: center;
+  margin: -4px 0 12px;
+  font-style: italic;
+}
+
+.mini-defi {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--primary);
+  margin: 0 0 16px;
+}
+
+/* Résultat fragment (étape réussie) */
+.result-fragment {
+  display: none;
+  margin-top: 20px;
+}
+
+.result-fragment.show {
+  display: block;
+  animation: fadeIn 0.3s ease;
+}
+
+.fragment-badge {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-weight: 700;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(239, 120, 18, 0.3);
+}
+
+.next-step {
+  margin-top: 16px;
+}
+
+.btn-next {
+  margin-top: 0;
+}
+
+/* Bloc débloquer + code SQL */
+.unlock-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  margin: 0 0 20px;
+  background: var(--gray-100);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+}
+
+.unlock-icon {
+  font-size: 1.4rem;
+}
+
+.code-sql {
+  margin: 0 0 20px;
+  padding: 16px;
+  background: var(--black);
+  color: #a8e6cf;
+  border-radius: var(--radius-sm);
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 0.95rem;
+  overflow-x: auto;
+}
+
+.code-sql code {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+
+/* Page finale — fin de jeu : image, leçon, partage WhatsApp */
+.container-final {
+  max-width: 520px;
+}
+
+.logo-final {
+  margin-bottom: 16px;
+}
+
+.final-title {
+  margin-bottom: 8px;
+}
+
+.final-intro {
+  font-size: 0.95rem;
+  color: var(--gray-700);
+  text-align: center;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.final-image-block {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.final-moral-img {
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-lg);
+  display: block;
+  margin: 0 auto 12px;
+}
+
+.final-image-caption {
+  font-size: 0.85rem;
+  color: var(--gray-500);
+  margin: 0 0 8px;
+}
+
+.link-download {
+  font-size: 0.875rem;
+  color: var(--primary);
+  text-decoration: underline;
+}
+
+.link-download:hover {
+  color: var(--primary-dark);
+}
+
+.final-fragments {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.fragment-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: var(--primary-soft);
+  border: 2px solid rgba(239, 120, 18, 0.3);
+  border-radius: var(--radius-sm);
+  font-size: 1rem;
+  color: var(--black);
+}
+
+.fragment-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 700;
+  border-radius: 50%;
+  font-size: 0.9rem;
+}
+
+.final-message {
+  padding: 20px;
+  margin-bottom: 20px;
+  background: var(--gray-100);
+  border-left: 4px solid var(--primary);
+  border-radius: var(--radius-sm);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--gray-900);
+}
+
+.final-message strong {
+  color: var(--primary-dark);
+}
+
+.final-cta {
+  font-size: 0.9rem;
+  color: var(--gray-700);
+  text-align: center;
+  margin: 0 0 12px;
+}
+
+.final-cta-hint {
+  font-size: 0.8rem;
+  color: var(--gray-500);
+  text-align: center;
+  margin: 12px 0 0;
+  line-height: 1.4;
+}
+
+.btn-whatsapp {
+  background: #25d366 !important;
+  color: var(--white) !important;
+  margin-top: 0;
+}
+
+.btn-whatsapp:hover {
+  background: #20bd5a !important;
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4) !important;
+}
+
+/* ========== Logo ========== */
+.logo {
+  display: block;
+  margin: 0 auto 24px;
+  width: 140px;
+  height: auto;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.06));
+}
+
+/* ========== Titres ========== */
+h1 {
+  color: var(--black);
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin: 0 0 8px;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+.subtitle {
+  font-size: 0.9375rem;
+  color: var(--gray-700);
+  text-align: center;
+  margin: 0 0 28px;
+  line-height: 1.5;
+}
+
+.subtitle em {
+  font-style: normal;
+  background: var(--gray-100);
+  color: var(--black);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: "Consolas", "Monaco", monospace;
+  font-size: 0.9em;
+}
+
+/* ========== Formulaires ========== */
+input[type="email"],
+input[type="text"] {
+  width: 100%;
+  padding: 14px 16px;
+  font-size: 1rem;
+  margin-top: 12px;
+  border: 2px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  background: var(--white);
+  color: var(--black);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px var(--primary-soft);
+}
+
+input::placeholder {
+  color: var(--gray-500);
+}
+
+/* ========== Boutons ========== */
+button {
+  width: 100%;
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 16px;
+  background: var(--primary);
+  color: var(--white);
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+  letter-spacing: 0.02em;
+}
+
+button:hover {
+  background: var(--primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(239, 120, 18, 0.4);
+}
+
+button:active {
+  transform: translateY(0);
+}
+
+/* ========== Questions (quiz) ========== */
+.question {
+  margin: 20px 0;
+  padding: 20px;
+  background: var(--gray-100);
+  border-radius: var(--radius-sm);
+  border-left: 4px solid var(--primary);
+  width: 100%;
+}
+.mask-btn{
+  display: none;
+}
+.question strong {
+  display: block;
+  color: var(--black);
+  font-size: 0.9375rem;
+  margin-bottom: 12px;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 10px 0;
+  font-size: 0.9375rem;
+  color: var(--gray-900);
+  cursor: pointer;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: background var(--transition);
+}
+
+label:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* Checkboxes et radios personnalisés */
+input[type="radio"],
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--primary);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* ========== Résultats & messages ========== */
+.container a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color var(--transition);
+}
+
+.container a:hover {
+  color: var(--primary-dark);
+}
+
+/* ========== Résultats & messages ========== */
+.result {
+  margin-top: 20px;
+  padding: 14px;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--success);
+  text-align: center;
+  background: rgba(46, 125, 50, 0.1);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(46, 125, 50, 0.3);
+  animation: fadeIn 0.3s ease;
+}
+
+.error {
+  color: var(--error);
+  font-size: 0.875rem;
+  text-align: center;
+  margin-top: 12px;
+  padding: 10px;
+  background: rgba(198, 40, 40, 0.08);
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(198, 40, 40, 0.2);
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+.arg-container {
+  max-width: 90vw !important;
+}
+/* ========== Responsive ========== */
+@media (min-width: 768px) {
+  .container {
+    padding: 48px 40px;
+    max-width: 480px;
+  }
+  .arg-container {
+    max-width: 60vw !important;
+  }
+  h1 {
+    font-size: 1.625rem;
+  }
+
+  .question-container{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    gap: 20px;
+  }
+  .logo {
+    width: 160px;
+    margin-bottom: 28px;
+  }
+}
+
+/* Option : page sombre (si tu veux tout en noir + orange) */
+body.theme-dark .container {
+  background: var(--black-soft);
+  color: var(--white);
+  box-shadow: var(--shadow-lg), 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+body.theme-dark h1,
+body.theme-dark .question strong,
+body.theme-dark label {
+  color: var(--white);
+}
+
+body.theme-dark .subtitle {
+  color: var(--gray-300);
+}
+
+body.theme-dark .question {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+body.theme-dark input[type="email"],
+body.theme-dark input[type="text"] {
+  background: var(--gray-900);
+  border-color: var(--gray-700);
+  color: var(--white);
+}
