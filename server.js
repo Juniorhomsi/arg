@@ -51,6 +51,18 @@ var server = http.createServer(function (req, res) {
     });
     return;
   }
+  if (req.method === 'GET' && url === '/api/users') {
+    fs.readFile(LOG_FILE, 'utf8', function (err, data) {
+      if (err) {
+        res.statusCode = 500;
+        return res.end('Erreur lecture fichier');
+      }
+      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+      res.end(data);
+    });
+    return;
+  }
+  
 
   fs.stat(filePath, function (err, stat) {
     if (err || !stat.isFile()) {
