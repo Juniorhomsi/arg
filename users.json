@@ -1,0 +1,86 @@
+[
+  {
+    "url": "http://localhost:3000/",
+    "referrer": "",
+    "timestamp": "2026-02-05T00:44:39.117Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "language": "fr-FR",
+    "languages": [
+      "fr-FR",
+      "fr",
+      "en-US",
+      "en"
+    ],
+    "cookieEnabled": true,
+    "doNotTrack": null,
+    "hardwareConcurrency": 4,
+    "deviceMemory": 8,
+    "timezone": "Europe/Paris",
+    "viewport": "1680x962",
+    "receivedAt": "2026-02-05T00:44:39.123Z"
+  },
+  {
+    "url": "http://localhost:3000/archives/mba-esg/index.html",
+    "referrer": "http://localhost:3000/",
+    "timestamp": "2026-02-05T00:44:39.182Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "language": "fr-FR",
+    "languages": [
+      "fr-FR",
+      "fr",
+      "en-US",
+      "en"
+    ],
+    "cookieEnabled": true,
+    "doNotTrack": null,
+    "hardwareConcurrency": 4,
+    "deviceMemory": 8,
+    "timezone": "Europe/Paris",
+    "viewport": "1680x962",
+    "receivedAt": "2026-02-05T00:44:39.187Z"
+  },
+  {
+    "url": "http://localhost:3000/archives/mba-esg/index.html",
+    "referrer": "http://localhost:3000/",
+    "timestamp": "2026-02-05T00:50:13.482Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "language": "fr-FR",
+    "languages": [
+      "fr-FR",
+      "fr",
+      "en-US",
+      "en"
+    ],
+    "cookieEnabled": true,
+    "doNotTrack": null,
+    "hardwareConcurrency": 4,
+    "deviceMemory": 8,
+    "timezone": "Europe/Paris",
+    "viewport": "1680x962",
+    "receivedAt": "2026-02-05T00:50:13.500Z"
+  },
+  {
+    "url": "http://localhost:3000/archives/mba-esg/index.html",
+    "referrer": "http://localhost:3000/archives/mba-esg/index.html",
+    "timestamp": "2026-02-05T00:50:16.554Z",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36",
+    "platform": "MacIntel",
+    "language": "fr-FR",
+    "languages": [
+      "fr-FR",
+      "fr",
+      "en-US",
+      "en"
+    ],
+    "cookieEnabled": true,
+    "doNotTrack": null,
+    "hardwareConcurrency": 4,
+    "deviceMemory": 8,
+    "timezone": "Europe/Paris",
+    "viewport": "1680x962",
+    "receivedAt": "2026-02-05T00:50:16.561Z"
+  }
+]

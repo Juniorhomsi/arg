@@ -1,20 +1,17 @@
-/**
- * Serveur minimal pour l’ARG : sert les pages et enregistre les accès dans users.txt
- * Lancer : npm install && node server.js
- * Puis ouvrir : http://localhost:3000/
- */
+const fs = require('fs');
+const path = require('path');
+const http = require('http');
 
-var fs = require('fs');
-var path = require('path');
-var http = require('http');
+const PORT = process.env.PORT || 3000;
+const ROOT = __dirname;
+const LOG_FILE = path.join(ROOT, 'users.json');
 
-var PORT = process.env.PORT || 3000;
-var ROOT = __dirname;
-var LOG_FILE = path.join(ROOT, 'users.txt');
+// Assure que le fichier users.json existe
+if (!fs.existsSync(LOG_FILE)) fs.writeFileSync(LOG_FILE, '[]', 'utf8');
 
 function serveFile(filePath, res, contentType) {
-  var stream = fs.createReadStream(filePath);
-  stream.on('error', function () {
+  const stream = fs.createReadStream(filePath);
+  stream.on('error', () => {
     res.statusCode = 404;
     res.end('Not found');
   });
@@ -23,55 +20,105 @@ function serveFile(filePath, res, contentType) {
 }
 
 function appendLog(data) {
-  var line = JSON.stringify(data) + '\n';
-  fs.appendFile(LOG_FILE, line, function (err) {
-    if (err) console.error('Erreur écriture users.txt:', err);
+  fs.readFile(LOG_FILE, 'utf8', (err, content) => {
+    let logs = [];
+    if (!err) {
+      try { logs = JSON.parse(content); } catch {}
+    }
+    logs.push(data);
+    fs.writeFile(LOG_FILE, JSON.stringify(logs, null, 2), (err) => {
+      if (err) console.error('Erreur écriture users.json:', err);
+    });
   });
 }
 
-var server = http.createServer(function (req, res) {
-  var url = req.url.split('?')[0];
-  var filePath = path.join(ROOT, url === '/' ? 'index.html' : url);
+const server = http.createServer((req, res) => {
+  const url = req.url.split('?')[0];
+  const filePath = path.join(ROOT, url === '/' ? 'index.html' : url);
 
+  // POST /api/log
   if (req.method === 'POST' && url === '/api/log') {
-    var body = '';
-    req.on('data', function (chunk) { body += chunk; });
-    req.on('end', function () {
+    let body = '';
+    req.on('data', chunk => body += chunk);
+    req.on('end', () => {
       try {
-        var data = JSON.parse(body);
+        const data = JSON.parse(body);
         data.receivedAt = new Date().toISOString();
         appendLog(data);
-        res.setHeader('Content-Type', 'application/json');
-        res.statusCode = 200;
+        res.writeHead(200, {'Content-Type': 'application/json'});
         res.end(JSON.stringify({ ok: true }));
       } catch (e) {
-        res.statusCode = 400;
+        res.writeHead(400, {'Content-Type': 'application/json'});
         res.end(JSON.stringify({ error: 'Invalid JSON' }));
       }
     });
     return;
   }
-  if (req.method === 'GET' && url === '/api/users') {
-    fs.readFile(LOG_FILE, 'utf8', function (err, data) {
+
+  // GET /logs — page HTML pour afficher les logs
+  if (req.method === 'GET' && url === '/logs') {
+    fs.readFile(LOG_FILE, 'utf8', (err, content) => {
       if (err) {
-        res.statusCode = 500;
-        return res.end('Erreur lecture fichier');
+        res.writeHead(500);
+        return res.end('Erreur lecture users.json');
       }
-      res.setHeader('Content-Type', 'text/plain; charset=utf-8');
-      res.end(data);
+      let logs = [];
+      try { logs = JSON.parse(content); } catch {}
+      let html = `
+        <html>
+        <head>
+          <meta charset="UTF-8">
+          <title>Logs Utilisateurs</title>
+          <style>
+            body { font-family: sans-serif; padding: 20px; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ccc; padding: 8px; }
+            th { background: #eee; }
+            tr:nth-child(even) { background: #f9f9f9; }
+            pre { margin: 0; font-family: monospace; }
+          </style>
+        </head>
+        <body>
+          <h1>Journal des utilisateurs</h1>
+          <table>
+            <tr>
+              <th>#</th>
+              <th>Timestamp</th>
+              <th>URL</th>
+              <th>UserAgent</th>
+              <th>Platform</th>
+              <th>Viewport</th>
+              <th>Détails</th>
+            </tr>
+            ${logs.map((log, i) => `
+              <tr>
+                <td>${i+1}</td>
+                <td>${log.timestamp || log.receivedAt}</td>
+                <td>${log.url || ''}</td>
+                <td>${log.userAgent || ''}</td>
+                <td>${log.platform || ''}</td>
+                <td>${log.viewport || ''}</td>
+                <td><pre>${JSON.stringify(log, null, 2)}</pre></td>
+              </tr>
+            `).join('')}
+          </table>
+        </body>
+        </html>
+      `;
+      res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
+      res.end(html);
     });
     return;
   }
-  
 
-  fs.stat(filePath, function (err, stat) {
+  // Tout le reste — fichiers statiques
+  fs.stat(filePath, (err, stat) => {
     if (err || !stat.isFile()) {
       res.statusCode = 404;
-      res.end('Not found');
-      return;
+      return res.end('Not found');
     }
-    var ext = path.extname(filePath);
-    var types = {
+    const ext = path.extname(filePath);
+    const types = {
       '.html': 'text/html; charset=utf-8',
       '.css': 'text/css',
       '.js': 'application/javascript',
@@ -86,7 +133,7 @@ var server = http.createServer(function (req, res) {
   });
 });
 
-server.listen(PORT, function () {
-  console.log('ARG disponible sur http://localhost:' + PORT + '/');
+server.listen(PORT, () => {
+  console.log('Serveur ARG actif sur http://localhost:' + PORT);
   console.log('Journal des accès :', LOG_FILE);
 });

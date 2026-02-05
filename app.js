@@ -26,21 +26,31 @@ function getDeviceInfo() {
   };
 }
 
+// function sendDeviceLog() {
+//   var base = (location.protocol === 'http:' || location.protocol === 'https:')
+//     ? ''
+//     : 'http://localhost:3000';
+//   var url = base + '/api/log';
+//   var data = getDeviceInfo();
+//   if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
+//     navigator.sendBeacon(url, JSON.stringify(data));
+//   } else {
+//     fetch(url, {
+//       method: 'POST',
+//       headers: { 'Content-Type': 'application/json' },
+//       body: JSON.stringify(data)
+//     }).catch(function () {});
+//   }
+// }
 function sendDeviceLog() {
-  var base = (location.protocol === 'http:' || location.protocol === 'https:')
-    ? ''
-    : 'http://localhost:3000';
-  var url = base + '/api/log';
+  var url = '/api/log';
   var data = getDeviceInfo();
-  if (typeof navigator !== 'undefined' && navigator.sendBeacon) {
-    navigator.sendBeacon(url, JSON.stringify(data));
-  } else {
-    fetch(url, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data)
-    }).catch(function () {});
-  }
+
+  fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data)
+  }).catch(() => {});
 }
 
 var WHATSAPP_MESSAGE =
