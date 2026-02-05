@@ -19,14 +19,18 @@
     Le cerveau confond : <em>réponse obtenue ≠ compétence acquise</em>.
   </p>
 
-  <p class="mini-defi">Réponds par Oui ou Non (30 secondes) :</p>
+  
+  <div class="timer-container">
+    <div class="mini-defi"><p class="mini-defi">Coche en fonction de tes réflexes (20 Secondes)</p></div>
+    <div id="timer2" class="timer" ></div>
+  </div>
 
   <div class="question question-mirror">
-    <label><input type="checkbox" name="m1"> Quand tu bloques, tu vas sur ChatGPT en moins de 60 secondes ?</label>
-    <label><input type="checkbox" name="m2"> As-tu déjà copié une requête SQL sans pouvoir l'expliquer ?</label>
-    <label><input type="checkbox" name="m3"> As-tu déjà utilisé une solution IA sans la tester ?</label>
-    <label><input type="checkbox" name="m4"> Tu te sens moins patient face à une difficulté qu'avant ?</label>
-    <label><input type="checkbox" name="m5"> Quand tu travailles sans IA, tu te sens plus lent ou stressé ?</label>
+    <label><input type="checkbox" name="m1"> Quand tu bloques, tu vas sur ChatGPT en moins de 60 secondes </label>
+    <label><input type="checkbox" name="m2"> As-tu déjà copié une requête SQL sans pouvoir l'expliquer </label>
+    <label><input type="checkbox" name="m3"> As-tu déjà utilisé une solution IA sans la tester </label>
+    <label><input type="checkbox" name="m4"> Tu te sens moins patient face à une difficulté qu'avant </label>
+    <label><input type="checkbox" name="m5"> Quand tu travailles sans IA, tu te sens plus lent ou stressé </label>
   </div>
 
   <button type="button" id="btn-step" onclick="step2()">Continuer</button>
@@ -35,5 +39,8 @@
 </div>
 
 <script src="../../app.js"></script>
+<script>
+  startCounter('timer2', 21);
+</script>
 </body>
 </html>

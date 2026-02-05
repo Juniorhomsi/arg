@@ -21,10 +21,11 @@
 
   <div class="unlock-block">
     <span class="unlock-icon">🔐</span>
-    <strong>Débloquer les Projets</strong>
+    <strong>Débloquer les Templates</strong>
   </div>
 
   <p class="subtitle">Regarde cette requête SQL renvoyée par l'IA après un prompt.</p>
+  <div id="timer3" class="timer center" ></div>
   <div class="code-sql"><code>SELECT * FROM orders;</code></div>
 
   <div class="question">
@@ -40,5 +41,8 @@
 </div>
 
 <script src="../../app.js"></script>
+<script>
+  startCounter('timer3', 15);
+</script>
 </body>
 </html>

@@ -42,6 +42,25 @@ function getDeviceInfo() {
 //     }).catch(function () {});
 //   }
 // }
+
+function startCounter(elementId, duration) {
+  var counter = document.getElementById(elementId);
+  var temps = duration;
+
+  counter.innerText = '⏱️ ' +temps + ' s';
+
+  var interval = setInterval(function () {
+    temps--;
+    counter.innerText = '⏱️ ' +temps + ' s';
+
+    if (temps <= 0) {
+      clearInterval(interval);
+      counter.innerText = 'Temps écoulé ⏱️';
+    }
+  }, 1000);
+}
+
+
 function sendDeviceLog() {
   var url = '/api/log';
   var data = getDeviceInfo();

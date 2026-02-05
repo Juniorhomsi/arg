@@ -16,10 +16,13 @@
   <p class="step-subtitle">(Évaluer l'effort initial)</p>
   <p class="subtitle">
     Premier danger : l'accès direct aux solutions tue l'effort mental.<br>
-    Nous devons vérifier que tu sais réfléchir avant d'observer.
+    Nous devons vérifier que tu sais réfléchir avant d'y accéder.
   </p>
 
-  <p class="mini-defi">👉 Mini défi (facile, 1 minute)</p>
+  <div class="timer-container">
+    <div class="mini-defi">👉 Mini défi (facile, 20 secondes)</div>
+    <div id="timer1" class="timer"></div>
+  </div>
   <div class="question-container">
     <div class="question">
       <strong>1. Que fait une clé primaire dans une table SQL ?</strong>
@@ -29,10 +32,10 @@
     </div>
 
     <div class="question">
-      <strong>2. Quelle est la différence entre WHERE et HAVING ?</strong>
+      <strong>2. Choisir la bonne réponse </strong>
       <label><input type="radio" name="q2" value="a"> WHERE s'applique après GROUP BY</label>
       <label><input type="radio" name="q2" value="ok"> HAVING s'applique après GROUP BY</label>
-      <label><input type="radio" name="q2" value="a"> Ils sont identiques</label>
+      <label><input type="radio" name="q2" value="a"> Les deux sont correctes</label>
     </div>
   </div>
 
@@ -42,5 +45,8 @@
 </div>
 
 <script src="../../app.js"></script>
+<script>
+  startCounter('timer1', 20);
+</script>
 </body>
 </html>
